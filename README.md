@@ -24,5 +24,3 @@ docker build -t streamlit .
 
 docker run -p 8501:8501 streamlit
 ```
-
-note: if the returned link (http://0.0.0.0:8501) does not work, please try (http://127.0.0.1:8501)
