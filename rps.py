@@ -1,42 +1,21 @@
-import tkinter as tk
+import streamlit as st
 import random
 
-def get_computer_choice():
-    return random.choice(['rock', 'paper', 'scissors'])
+st.title("Rock Paper Scissors Game")
 
-def determine_winner(user, computer):
-    if user == computer:
-        return "It's a tie!"
-    if (user == 'rock' and computer == 'scissors') or \
-       (user == 'scissors' and computer == 'paper') or \
-       (user == 'paper' and computer == 'rock'):
-        return "You win!"
+options = ["Rock", "Paper", "Scissors"]
+user_choice = st.selectbox("Choose your option", options)
+
+if st.button("Play"):
+    computer_choice = random.choice(options)
+    st.write(f"You chose: {user_choice}")
+    st.write(f"Computer chose: {computer_choice}")
+
+    if user_choice == computer_choice:
+        st.write("It's a tie!")
+    elif (user_choice == "Rock" and computer_choice == "Scissors") or \
+         (user_choice == "Paper" and computer_choice == "Rock") or \
+         (user_choice == "Scissors" and computer_choice == "Paper"):
+        st.write("You win!")
     else:
-        return "Computer wins!"
-
-def play_game(user_choice):
-    computer_choice = get_computer_choice()
-    result = determine_winner(user_choice, computer_choice)
-
-    result_label.config(text=f"You chose: {user_choice}\nComputer chose: {computer_choice}\n{result}")
-
-# Create the main window
-window = tk.Tk()
-window.title("Rock, Paper, Scissors")
-
-# Create a label to display the result
-result_label = tk.Label(window, text="Make your choice!", font=("Helvetica", 14))
-result_label.pack(pady=20)
-
-# Create buttons for rock, paper, and scissors
-rock_button = tk.Button(window, text="Rock", width=12, command=lambda: play_game('rock'))
-rock_button.pack(pady=5)
-
-paper_button = tk.Button(window, text="Paper", width=12, command=lambda: play_game('paper'))
-paper_button.pack(pady=5)
-
-scissors_button = tk.Button(window, text="Scissors", width=12, command=lambda: play_game('scissors'))
-scissors_button.pack(pady=5)
-
-# Run the main loop
-window.mainloop()
+        st.write("You lose!")
