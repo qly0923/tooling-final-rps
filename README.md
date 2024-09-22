@@ -19,7 +19,9 @@ This is a simple **Rock-Paper-Scissors** game built with Python and Streamlit. T
 
 ```bash
 git clone https://github.com/qly0923/tooling-final-rps.git
+
 docker build -t streamlit .
+
 docker run -p 8501:8501 streamlit
 ```
 
